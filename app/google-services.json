@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "253443582855",
+    "firebase_url": "https://lbb-login-245c5.firebaseio.com",
+    "project_id": "lbb-login-245c5",
+    "storage_bucket": "lbb-login-245c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253443582855:android:fb90422ee8b76a8d",
+        "android_client_info": {
+          "package_name": "com.emre1s.authenticationmodule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253443582855-df86jfh0cjhj8n6uqarfmpahba3bubue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emre1s.authenticationmodule",
+            "certificate_hash": "6acacd08e08215e09111b8fef8fbd8c86eac2ccb"
+          }
+        },
+        {
+          "client_id": "253443582855-eo9t6dmfighv5tkmc89u4trunckefmae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzxDhmpsZvVoGOws-tg-nqi-zawzz4gus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253443582855-eo9t6dmfighv5tkmc89u4trunckefmae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

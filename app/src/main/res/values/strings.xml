@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Authentication Module</string>
+    <string name="login_text">Login</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Password</string>
+    <string name="sign_up_text">Do not have an account? Sign up now!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name_hint">Name</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="create_account_label">Create Account</string>
+    <string name="confirm_password">Confirm password</string>
+</resources>
