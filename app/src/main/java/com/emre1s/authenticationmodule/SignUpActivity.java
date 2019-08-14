@@ -1,8 +1,5 @@
 package com.emre1s.authenticationmodule;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +10,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.emre1s.authenticationmodule.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,7 +22,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
@@ -35,37 +34,38 @@ import static com.emre1s.authenticationmodule.LoginActivity.USER_ID_KEY;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final int PHONE_NUMBER_LENGTH = 10;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-
     @BindView(R.id.pb_loading)
     ProgressBar loadingProgressBar;
-
     @BindView(R.id.btn_signup)
     MaterialButton signUpButton;
-
     @BindView(R.id.et_signup_email)
     TextInputEditText signUpEmail;
     @BindView(R.id.tl_signup_email)
     TextInputLayout signUpEmailLayout;
-
     @BindView(R.id.et_signup_password)
     TextInputEditText signUpPassword;
-
     @BindView(R.id.et_signup_phone)
     TextInputEditText signUpPhone;
     @BindView(R.id.tl_signup_phone)
     TextInputLayout signUpPhoneLayout;
-
     @BindView(R.id.et_signup_name)
     TextInputEditText signUpName;
     @BindView(R.id.tl_signup_fullname)
     TextInputLayout signUpNameLayout;
-
     @BindView(R.id.et_signup_confirm_password)
     TextInputEditText signUpPasswordConfirm;
     @BindView(R.id.tl_signup_confirm_password)
     TextInputLayout signUpConfirmPasswordLayout;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
+    public static boolean isValidEmail(String email) {
+        if (email == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,14 +207,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean isValidEmail(String email) {
-        if (email == null) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        }
-    }
-
     private boolean isValidName(String name) {
         return !name.equals("") && name.matches("^[a-zA-Z ]*$");
     }
@@ -223,11 +215,12 @@ public class SignUpActivity extends AppCompatActivity {
         if (phone == null) {
             return false;
         }
-        return !phone.equals("") && phone.matches("^[0-9]*$");
+        return !phone.equals("") && phone.length() >= SignUpActivity.PHONE_NUMBER_LENGTH
+                && phone.matches("^[0-9]*$");
     }
 
     private boolean arePasswordsSame(String password) {
-        return password.equals(signUpPassword.getText().toString());
+        return password.equals(Objects.requireNonNull(signUpPassword.getText()).toString());
     }
 
     private boolean finalValidation() {
@@ -260,6 +253,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 new Intent(SignUpActivity.this,
                                         UserDetailsActivity.class);
                         toUserDetailActivity.putExtra(USER_ID_KEY, authResult.getUser().getUid());
+                        startActivity(toUserDetailActivity);
                         Executors.newSingleThreadExecutor().execute(new Runnable() {
                             @Override
                             public void run() {
@@ -270,12 +264,14 @@ public class SignUpActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 Log.d("Emre1s", "Success Document made");
+                                                finish();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 Log.d("Emre1s", "Failure. Doc not made");
+                                                finish();
                                             }
                                         });
                             }

@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-auth:18.1.0'
     implementation 'com.google.firebase:firebase-firestore:20.2.0'
+    implementation 'com.google.firebase:firebase-storage:18.1.1'
 
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
@@ -47,6 +48,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.karumi:dexter:5.0.0'
+
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

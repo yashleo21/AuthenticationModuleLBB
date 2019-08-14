@@ -11,4 +11,8 @@
     <string name="phone_number_label">Phone number</string>
     <string name="create_account_label">Create Account</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="label_upload_image">Uploading image</string>
+    <string name="logout_label">Logout</string>
+    <string name="camera_text">Camera</string>
+    <string name="gallery_text">Gallery</string>
 </resources>

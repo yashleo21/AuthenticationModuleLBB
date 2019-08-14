@@ -22,7 +22,7 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="colorOnBackground">#212121</item>
     </style>
-    
+
     <style name="MaterialTheme.NoActionBar" parent="MaterialTheme">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
