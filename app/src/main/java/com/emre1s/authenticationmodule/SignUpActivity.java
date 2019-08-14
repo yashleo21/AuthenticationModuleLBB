@@ -118,7 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!isValidName(editable.toString())) {
+                if (!isValidName(editable.toString().trim())) {
                     signUpNameLayout.setErrorEnabled(true);
                     signUpNameLayout.setError("Incorrect name");
                 } else {
@@ -221,6 +221,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpName.addTextChangedListener(null);
         signUpEmail.addTextChangedListener(null);
         signUpPhone.addTextChangedListener(null);
+        signUpPassword.addTextChangedListener(null);
         signUpPasswordConfirm.addTextChangedListener(null);
     }
 
@@ -265,10 +266,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean finalValidation() {
-        return isValidEmail(signUpEmail.getText().toString()) &&
-                isValidName(signUpName.getText().toString()) &&
+        return isValidEmail(signUpEmail.getText().toString().trim()) &&
+                isValidName(signUpName.getText().toString().trim()) &&
                 arePasswordsSame(signUpPasswordConfirm.getText().toString()) &&
-                isValidPhone(signUpPhone.getText().toString());
+                isValidPhone(signUpPhone.getText().toString().trim());
 
     }
 

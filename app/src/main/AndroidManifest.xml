@@ -16,13 +16,16 @@
         android:theme="@style/MaterialTheme.NoActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".UserDetailsActivity"></activity>
+        <activity android:name=".UserDetailsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/MaterialTheme"
+            android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity android:name=".LoginActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

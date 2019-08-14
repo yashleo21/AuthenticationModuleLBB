@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         signUpText.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-            finish();
         });
         loginButton.setOnClickListener(this::handleLoginButton);
         email.addTextChangedListener(new TextWatcher() {
