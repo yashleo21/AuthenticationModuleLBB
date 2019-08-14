@@ -113,7 +113,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLoginButton(View view) {
-        if (SignUpActivity.isValidEmail(Objects.requireNonNull(email.getText()).toString())) {
+        if (SignUpActivity.isValidEmail(Objects.requireNonNull(email.getText()).toString()) &&
+        !Objects.requireNonNull(password.getText()).toString().isEmpty()) {
             loginButton.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email.getText().toString(),
@@ -142,5 +143,12 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Please recheck your entries", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean passwordCheck(String password) {
+        if (password.trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

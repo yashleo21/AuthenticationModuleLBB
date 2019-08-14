@@ -34,28 +34,38 @@ import static com.emre1s.authenticationmodule.LoginActivity.USER_ID_KEY;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final int PHONE_NUMBER_LENGTH = 10;
+
     @BindView(R.id.pb_loading)
     ProgressBar loadingProgressBar;
+
     @BindView(R.id.btn_signup)
     MaterialButton signUpButton;
+
     @BindView(R.id.et_signup_email)
     TextInputEditText signUpEmail;
     @BindView(R.id.tl_signup_email)
     TextInputLayout signUpEmailLayout;
+
     @BindView(R.id.et_signup_password)
     TextInputEditText signUpPassword;
+    @BindView(R.id.tl_signup_password)
+    TextInputLayout signUpPasswordLayout;
+
     @BindView(R.id.et_signup_phone)
     TextInputEditText signUpPhone;
     @BindView(R.id.tl_signup_phone)
     TextInputLayout signUpPhoneLayout;
+
     @BindView(R.id.et_signup_name)
     TextInputEditText signUpName;
     @BindView(R.id.tl_signup_fullname)
     TextInputLayout signUpNameLayout;
+
     @BindView(R.id.et_signup_confirm_password)
     TextInputEditText signUpPasswordConfirm;
     @BindView(R.id.tl_signup_confirm_password)
     TextInputLayout signUpConfirmPasswordLayout;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -162,6 +172,27 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+        signUpPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!passwordCheck(editable.toString())) {
+                    signUpPasswordLayout.setErrorEnabled(true);
+                    signUpPasswordLayout.setError("Password should not just have spaces or be empty");
+                } else {
+                    signUpPasswordLayout.setErrorEnabled(false);
+                }
+            }
+        });
         signUpPasswordConfirm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -220,7 +251,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean arePasswordsSame(String password) {
+        if (password.trim().isEmpty()) {
+            return false;
+        }
         return password.equals(Objects.requireNonNull(signUpPassword.getText()).toString());
+    }
+
+    private boolean passwordCheck(String password) {
+        if (password.trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private boolean finalValidation() {
